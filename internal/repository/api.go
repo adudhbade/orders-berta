@@ -9,8 +9,6 @@ type Order struct {
 	PostalCode string  `json:"postalCode"`
 	Town string  `json:"town"`
 	Total     float64 `json:"total"`
-	UserId string `json:"userId"`
-	ProductName string `json:"productName"`
 }
 
 // OrderRepository interface defines the basic operations needed for the order service

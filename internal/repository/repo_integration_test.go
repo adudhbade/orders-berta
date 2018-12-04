@@ -24,7 +24,7 @@ func runTestsForRepoType(repositoryType string, t *testing.T) {
 	repo, err := Create(repositoryType)
 	require.NoError(t, err)
 
-	newOrder := Order{OrderId: "orderId1", Namespace: "N7", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "morihybriscom", ProductName: "Camera"}
+	newOrder := Order{OrderId: "orderId1", Namespace: "N7", Total: 10, PostalCode: "80636", Town: "Munich"}
 
 	t.Run("Create and get Order", func(t *testing.T) {
 		//when
@@ -40,8 +40,6 @@ func runTestsForRepoType(repositoryType string, t *testing.T) {
 		assert.Equal(t, resultOrders[0].Total, float64(10))
 		assert.Equal(t, resultOrders[0].PostalCode, "80636")
 		assert.Equal(t, resultOrders[0].Town, "Munich")
-		assert.Equal(t, resultOrders[0].UserId, "morihybriscom")
-		assert.Equal(t, resultOrders[0].ProductName, "Camera")
 
 		resultOrders, err = repo.GetNamespaceOrders("N7")
 		require.NoError(t, err)
@@ -51,8 +49,6 @@ func runTestsForRepoType(repositoryType string, t *testing.T) {
 		assert.Equal(t, resultOrders[0].Total, float64(10))
 		assert.Equal(t, resultOrders[0].PostalCode, "80636")
 		assert.Equal(t, resultOrders[0].Town, "Munich")
-		assert.Equal(t, resultOrders[0].UserId, "moris@hybriscom")
-		assert.Equal(t, resultOrders[0].ProductName, "Camera2")
 
 
 	})
@@ -67,8 +63,8 @@ func runTestsForRepoType(repositoryType string, t *testing.T) {
 
 	t.Run("Create orders in different namespaces", func(t *testing.T) {
 		//when
-		o1 := Order{OrderId: "orderId1", Namespace: "N8", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "morihybriscom", ProductName: "Camera"}
-		o2 := Order{OrderId: "orderId1", Namespace: "N9", Total: 10, PostalCode: "80637", Town: "Munich2", UserId: "moris@hybriscom", ProductName: "Camera2"}
+		o1 := Order{OrderId: "orderId1", Namespace: "N8", Total: 10, PostalCode: "80636", Town: "Munich"}
+		o2 := Order{OrderId: "orderId1", Namespace: "N9", Total: 10, PostalCode: "80637", Town: "Munich2"}
 		err := repo.InsertOrder(o1)
 		assert.NoError(t, err)
 		err = repo.InsertOrder(o2)
@@ -83,8 +79,6 @@ func runTestsForRepoType(repositoryType string, t *testing.T) {
 		assert.Equal(t, resultOrders[0].Total, float64(10))
 		assert.Equal(t, resultOrders[0].PostalCode, "80636")
 		assert.Equal(t, resultOrders[0].Town, "Munich")
-		assert.Equal(t, resultOrders[0].UserId, "morihybriscom")
-		assert.Equal(t, resultOrders[0].ProductName, "Camera")
 
 		resultOrders, err = repo.GetNamespaceOrders("N9")
 		require.NoError(t, err)
@@ -94,8 +88,6 @@ func runTestsForRepoType(repositoryType string, t *testing.T) {
 		assert.Equal(t, resultOrders[0].Total, float64(10))
 		assert.Equal(t, resultOrders[0].PostalCode, "80637")
 		assert.Equal(t, resultOrders[0].Town, "Munich2")
-		assert.Equal(t, resultOrders[0].UserId, "moris@hybriscom")
-		assert.Equal(t, resultOrders[0].ProductName, "Camera2")
 
 	})
 

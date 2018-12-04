@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	insertQuery   = "INSERT INTO %s (order_id, namespace, total, postal_code, town, user_id, product_name) VALUES (?, ?, ?, ?, ?, ?,?)"
+	insertQuery   = "INSERT INTO %s (order_id, namespace, total, postal_code, town) VALUES (?, ?, ?, ?, ?)"
 	getQuery      = "SELECT * FROM %s"
 	getNSQuery    = "SELECT * FROM %s WHERE namespace = ?"
 	deleteQuery   = "DELETE FROM %s"
@@ -57,7 +57,7 @@ type sqlError interface {
 func (repository *orderRepositorySQL) InsertOrder(order Order) error {
 	q := fmt.Sprintf(insertQuery, dbPkg.SanitizeSQLArg(repository.ordersTableName))
 	log.Debugf("Running insert order query: '%q'.", q)
-	_, err := repository.database.Exec(q, order.OrderId, order.Namespace, order.Total, order.PostalCode, order.Town, order.UserId, order.ProductName)
+	_, err := repository.database.Exec(q, order.OrderId, order.Namespace, order.Total, order.PostalCode, order.Town)
 
 	if errorWithNumber, ok := err.(sqlError); ok {
 		if errorWithNumber.sqlErrorNumber() == dbPkg.PrimaryKeyViolation {
@@ -120,7 +120,7 @@ func readFromResult(rows *sql.Rows) ([]Order, error) {
 	orderList := make([]Order, 0)
 	for rows.Next() {
 		order := Order{}
-		if err := rows.Scan(&order.OrderId, &order.Namespace, &order.Total, &order.PostalCode, &order.Town, &order.UserId,&order.ProductName ); err != nil {
+		if err := rows.Scan(&order.OrderId, &order.Namespace, &order.Total, &order.PostalCode, &order.Town); err != nil {
 			return []Order{}, err
 		}
 		orderList = append(orderList, order)
