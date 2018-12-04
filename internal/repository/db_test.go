@@ -8,7 +8,7 @@ import (
 
 	_ "github.com/lib/pq"
 	"github.com/stretchr/testify/assert"
-	dbPkg "github.com/kenlomaxhybris/orders-cloudlab4/internal/mssqldb"
+	dbPkg "github.com/adudhbade/orders-berta/internal/mssqldb"
 )
 
 var newOrder = Order{OrderId: "orderId1", Namespace: "N7", Total: 10, PostalCode: "80636", Town: "Munich"}

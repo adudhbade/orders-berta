@@ -9,7 +9,7 @@ import (
 	"github.com/gorilla/mux"
 	log "github.com/Sirupsen/logrus"
 
-	"github.com/kenlomaxhybris/orders-cloudlab4/internal/repository"
+	"github.com/adudhbade/orders-berta/internal/repository"
 )
 
 const defaultNamespace = "default"

@@ -16,7 +16,7 @@ import (
 
 	"io/ioutil"
 
-	"github.com/kenlomaxhybris/orders-cloudlab4/internal/repository"
+	"github.com/adudhbade/orders-berta/internal/repository"
 )
 
 func TestCreateOrderSuccess(t *testing.T) {

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: orders-cloudlab4
+  name: orders-berta
   labels:
-    example: orders-cloudlab4
+    example: orders-berta
   annotations:
     auth.istio.io/8017: NONE
 spec:
@@ -11,25 +11,25 @@ spec:
   - name: http
     port: 8017
   selector:
-    example: orders-cloudlab4
+    example: orders-berta
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: orders-cloudlab4
+  name: orders-berta
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        example: orders-cloudlab4
+        example: orders-berta
       annotations:
         sidecar.istio.io/inject: "true"
     spec:
       containers:
-      - image: kenlomax/orders-cloudlab4:latest
+      - image: amitdudhbade1/orders-berta:v2
         imagePullPolicy: Always
-        name: orders-cloudlab4
+        name: orders-berta
         ports:
         - name: http
           containerPort: 8017
@@ -42,5 +42,3 @@ spec:
         - name: dbtype
           # available dbtypes are: [memory, mssql]
           value: "memory"
-
-

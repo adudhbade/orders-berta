@@ -8,7 +8,7 @@ import (
 	"github.com/vrischmann/envconfig"
 	"github.com/pkg/errors"
 
-	dbPkg "github.com/kenlomaxhybris/orders-cloudlab4/internal/mssqldb"
+	dbPkg "github.com/adudhbade/orders-berta/internal/mssqldb"
 )
 
 const (

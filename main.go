@@ -8,9 +8,9 @@ import (
 	"github.com/rs/cors"
 	"github.com/vrischmann/envconfig"
 
-	"github.com/kenlomaxhybris/orders-cloudlab4/config"
-	"github.com/kenlomaxhybris/orders-cloudlab4/handler"
-	"github.com/kenlomaxhybris/orders-cloudlab4/internal/repository"
+	"github.com/adudhbade/orders-berta/config"
+	"github.com/adudhbade/orders-berta/handler"
+	"github.com/adudhbade/orders-berta/internal/repository"
 
 	_ "github.com/lib/pq"
 )
