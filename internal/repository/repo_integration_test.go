@@ -83,8 +83,8 @@ func runTestsForRepoType(repositoryType string, t *testing.T) {
 		assert.Equal(t, resultOrders[0].Total, float64(10))
 		assert.Equal(t, resultOrders[0].PostalCode, "80636")
 		assert.Equal(t, resultOrders[0].Town, "Munich")
-		assert.Equal(t, resultOrders[0].Town, "mori@hybris.com")
-		assert.Equal(t, resultOrders[0].Town, "Camera")
+		assert.Equal(t, resultOrders[0].UserId, "mori@hybris.com")
+		assert.Equal(t, resultOrders[0].ProductName, "Camera")
 
 		resultOrders, err = repo.GetNamespaceOrders("N9")
 		require.NoError(t, err)
@@ -94,8 +94,8 @@ func runTestsForRepoType(repositoryType string, t *testing.T) {
 		assert.Equal(t, resultOrders[0].Total, float64(10))
 		assert.Equal(t, resultOrders[0].PostalCode, "80637")
 		assert.Equal(t, resultOrders[0].Town, "Munich2")
-		assert.Equal(t, resultOrders[0].Town, "moris@hybris.com")
-		assert.Equal(t, resultOrders[0].Town, "Camera2")
+		assert.Equal(t, resultOrders[0].UserId, "moris@hybris.com")
+		assert.Equal(t, resultOrders[0].ProductName, "Camera2")
 
 	})
 
