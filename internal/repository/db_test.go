@@ -11,7 +11,7 @@ import (
 	dbPkg "github.com/adudhbade/orders-berta/internal/mssqldb"
 )
 
-var newOrder = Order{OrderId: "orderId1", Namespace: "N7", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "mori@hybris.com", ProductName: "Camera"}
+var newOrder = Order{OrderId: "orderId1", Namespace: "N7", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "morihybris.com", ProductName: "Camera"}
 
 const (
 	parsedInsert = "INSERT INTO tableName (order_id, namespace, total, postal_code, town, user_id, product_name) VALUES (?, ?, ?, ?, ?, ?, ?)"

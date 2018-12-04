@@ -29,7 +29,7 @@ func TestCreateOrderSuccess(t *testing.T) {
 	ts := httptest.NewServer(router)
 	defer ts.Close()
 
-	newOrder := repository.Order{OrderId: "orderId1", Namespace: "N7", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "mori@hybris.com", ProductName: "Camera"}
+	newOrder := repository.Order{OrderId: "orderId1", Namespace: "N7", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "morihybris.com", ProductName: "Camera"}
 
 	repoMock.On("InsertOrder", newOrder).Return(nil)
 
@@ -89,7 +89,7 @@ func TestCreateOrderConflict(t *testing.T) {
 	defer ts.Close()
 
 	// when
-	newOrder := repository.Order{OrderId: "orderId1", Namespace: "N7", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "mori@hybris.com", ProductName: "Camera"}
+	newOrder := repository.Order{OrderId: "orderId1", Namespace: "N7", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "morihybris.com", ProductName: "Camera"}
 
 	repoMock.On("InsertOrder", newOrder).Return(repository.ErrDuplicateKey).Once()
 
@@ -128,7 +128,7 @@ func TestOrderCreateInternalError(t *testing.T) {
 	defer ts.Close()
 
 	// when
-	newOrder := repository.Order{OrderId: "orderId1", Namespace: "N7", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "mori@hybris.com", ProductName: "Camera"}
+	newOrder := repository.Order{OrderId: "orderId1", Namespace: "N7", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "morihybris.com", ProductName: "Camera"}
 
 	repoMock.On("InsertOrder", newOrder).Return(errors.New("an error")).Once()
 
@@ -166,10 +166,10 @@ func TestCreateOrderWithoutNamespaceSuccess(t *testing.T) {
 	defer ts.Close()
 
 	// insert order without a namespace
-	newOrder := repository.Order{OrderId: "orderId1", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "mori@hybris.com", ProductName: "Camera"}
+	newOrder := repository.Order{OrderId: "orderId1", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "morihybris.com", ProductName: "Camera"}
 
 	// repository gets an order with default namespace (handler adds it)
-	expectedOrder := repository.Order{OrderId: "orderId1", Namespace: "default", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "mori@hybris.com", ProductName: "Camera"}
+	expectedOrder := repository.Order{OrderId: "orderId1", Namespace: "default", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "morihybris.com", ProductName: "Camera"}
 	repoMock.On("InsertOrder", expectedOrder).Return(nil).Once()
 
 	requestBody := new(bytes.Buffer)

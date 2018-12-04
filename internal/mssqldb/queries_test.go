@@ -19,7 +19,7 @@ func TestSanitizeSQLArg(t *testing.T) {
 		},
 		{
 			name:   "SanitizeForbiddenCharacters",
-			input:  "Table ,;!?%(·",
+			input:  "Table ,;!?%(.",
 			output: "Table",
 		},
 		{
@@ -29,7 +29,7 @@ func TestSanitizeSQLArg(t *testing.T) {
 		},
 		{
 			name:   "OnlyForbiddenCharacters",
-			input:  " ,;!?%(·",
+			input:  " ,;!?%(.",
 			output: "",
 		},
 	}

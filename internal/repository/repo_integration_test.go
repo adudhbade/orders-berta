@@ -24,7 +24,7 @@ func runTestsForRepoType(repositoryType string, t *testing.T) {
 	repo, err := Create(repositoryType)
 	require.NoError(t, err)
 
-	newOrder := Order{OrderId: "orderId1", Namespace: "N7", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "mori@hybris.com", ProductName: "Camera"}
+	newOrder := Order{OrderId: "orderId1", Namespace: "N7", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "morihybris.com", ProductName: "Camera"}
 
 	t.Run("Create and get Order", func(t *testing.T) {
 		//when
@@ -40,7 +40,7 @@ func runTestsForRepoType(repositoryType string, t *testing.T) {
 		assert.Equal(t, resultOrders[0].Total, float64(10))
 		assert.Equal(t, resultOrders[0].PostalCode, "80636")
 		assert.Equal(t, resultOrders[0].Town, "Munich")
-		assert.Equal(t, resultOrders[0].UserId, "mori@hybris.com")
+		assert.Equal(t, resultOrders[0].UserId, "morihybris.com")
 		assert.Equal(t, resultOrders[0].ProductName, "Camera")
 
 		resultOrders, err = repo.GetNamespaceOrders("N7")
@@ -67,7 +67,7 @@ func runTestsForRepoType(repositoryType string, t *testing.T) {
 
 	t.Run("Create orders in different namespaces", func(t *testing.T) {
 		//when
-		o1 := Order{OrderId: "orderId1", Namespace: "N8", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "mori@hybris.com", ProductName: "Camera"}
+		o1 := Order{OrderId: "orderId1", Namespace: "N8", Total: 10, PostalCode: "80636", Town: "Munich", UserId: "morihybris.com", ProductName: "Camera"}
 		o2 := Order{OrderId: "orderId1", Namespace: "N9", Total: 10, PostalCode: "80637", Town: "Munich2", UserId: "moris@hybris.com", ProductName: "Camera2"}
 		err := repo.InsertOrder(o1)
 		assert.NoError(t, err)
@@ -83,7 +83,7 @@ func runTestsForRepoType(repositoryType string, t *testing.T) {
 		assert.Equal(t, resultOrders[0].Total, float64(10))
 		assert.Equal(t, resultOrders[0].PostalCode, "80636")
 		assert.Equal(t, resultOrders[0].Town, "Munich")
-		assert.Equal(t, resultOrders[0].UserId, "mori@hybris.com")
+		assert.Equal(t, resultOrders[0].UserId, "morihybris.com")
 		assert.Equal(t, resultOrders[0].ProductName, "Camera")
 
 		resultOrders, err = repo.GetNamespaceOrders("N9")
