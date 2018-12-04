@@ -27,7 +27,7 @@ spec:
         sidecar.istio.io/inject: "true"
     spec:
       containers:
-      - image: amitdudhbade1/orders-berta:v2
+      - image: amitdudhbade1/orders-berta:v3
         imagePullPolicy: Always
         name: orders-berta
         ports:
