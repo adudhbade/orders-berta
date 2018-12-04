@@ -91,11 +91,19 @@ components:
         town:
           type: string
           example: Brighton
+        userId:
+          type: string
+          example: ab1234
+        productName:
+          type: string
+          example: camerax20
       required:
         - orderId
         - total
         - postalCode
         - town
+        - userId
+        - productName
     OrderList:
       type: array
       items:

@@ -42,7 +42,7 @@ func (orderHandler Order) InsertOrder(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	var order repository.Order
 	err = json.Unmarshal(b, &order)
-	if err != nil || order.OrderId == ""|| order.PostalCode == ""|| order.Town == "" || order.Total == 0 {
+	if err != nil || order.OrderId == ""|| order.PostalCode == ""|| order.Town == "" || order.UserId == "" || order.ProductName== "" ||order.Total == 0 {
 		respondWithCodeAndMessage(http.StatusBadRequest, "Invalid request body, orderId / total / postalCode / town fields cannot be empty.", w)
 		return
 	}

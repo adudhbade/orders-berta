@@ -14,7 +14,7 @@ import (
 var newOrder = Order{OrderId: "orderId1", Namespace: "N7", Total: 10, PostalCode: "80636", Town: "Munich"}
 
 const (
-	parsedInsert = "INSERT INTO tableName (order_id, namespace, total, postal_code, town) VALUES (?, ?, ?, ?, ?)"
+	parsedInsert = "INSERT INTO tableName (order_id, namespace, total, postal_code, town, user_id, product_name) VALUES (?, ?, ?, ?, ?, ?, ?)"
 	parsedGet    = "SELECT * FROM tableName"
 	parsedDelete = "DELETE FROM tableName"
 )
@@ -23,7 +23,7 @@ func TestDbCreateSuccess(t *testing.T) {
 	databaseMock := mockDbQuerier{}
 	repo := orderRepositorySQL{&databaseMock, "tableName"}
 
-	databaseMock.On("Exec", parsedInsert, newOrder.OrderId, newOrder.Namespace, newOrder.Total, newOrder.PostalCode, newOrder.Town).Return((sql.Result)(nil), nil)
+	databaseMock.On("Exec", parsedInsert, newOrder.OrderId, newOrder.Namespace, newOrder.Total, newOrder.PostalCode, newOrder.Town, newOrder.UserId, newOrder.ProductName).Return((sql.Result)(nil), nil)
 	//when
 	err := repo.InsertOrder(newOrder)
 	//then
@@ -39,7 +39,7 @@ func TestDbCreateDuplicate(t *testing.T) {
 	databaseMock := mockDbQuerier{}
 	repo := orderRepositorySQL{&databaseMock, "tableName"}
 
-	databaseMock.On("Exec", parsedInsert, newOrder.OrderId, newOrder.Namespace, newOrder.Total, newOrder.PostalCode, newOrder.Town ).
+	databaseMock.On("Exec", parsedInsert, newOrder.OrderId, newOrder.Namespace, newOrder.Total, newOrder.PostalCode, newOrder.Town, newOrder.UserId, newOrder.ProductName).
 		Return((sql.Result)(nil), primaryKeyViolationError{})
 	//when
 	err := repo.InsertOrder(newOrder)
@@ -55,7 +55,7 @@ func TestDbRepositoryCreateOtherSqlError(t *testing.T) {
 	databaseMock := mockDbQuerier{}
 	repo := orderRepositorySQL{&databaseMock, "tableName"}
 
-	databaseMock.On("Exec", parsedInsert, newOrder.OrderId, newOrder.Namespace, newOrder.Total, newOrder.PostalCode, newOrder.Town).
+	databaseMock.On("Exec", parsedInsert, newOrder.OrderId, newOrder.Namespace, newOrder.Total, newOrder.PostalCode, newOrder.Town, newOrder.UserId, newOrder.ProductName).
 		Return((sql.Result)(nil), otherSQLError{})
 	//when
 	err := repo.InsertOrder(newOrder)
@@ -67,7 +67,7 @@ func TestDbCreateError(t *testing.T) {
 	databaseMock := mockDbQuerier{}
 	repo := orderRepositorySQL{&databaseMock, "tableName"}
 
-	databaseMock.On("Exec", parsedInsert, newOrder.OrderId, newOrder.Namespace, newOrder.Total, newOrder.PostalCode, newOrder.Town).Return((sql.Result)(nil), errors.New("unexpected error"))
+	databaseMock.On("Exec", parsedInsert, newOrder.OrderId, newOrder.Namespace, newOrder.Total, newOrder.PostalCode, newOrder.Town, newOrder.UserId, newOrder.ProductName).Return((sql.Result)(nil), errors.New("unexpected error"))
 	//when
 	err := repo.InsertOrder(newOrder)
 	//then

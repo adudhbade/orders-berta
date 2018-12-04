@@ -12,6 +12,8 @@ BEGIN
       total DECIMAL(8,2),
       postal_code VARCHAR(64),
       town VARCHAR(64),
+      user_id VARCHAR(64),
+      product_name VARCHAR(64),
       PRIMARY KEY (order_id, namespace)
     )
 END`
